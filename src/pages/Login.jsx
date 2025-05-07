@@ -25,16 +25,16 @@ import { toast } from "sonner"
 
 const Login = () => {
     const [loginInput, setLoginInput] = useState({ email: "", password: "" })
-    const [signupInput, setSignupInput] = useState({ name: "", email: "", password: "" })
+    const [signupInput, setSignupInput] = useState({ name: "", email: "", password: "",role: "student" })
     const navigate = useNavigate();
 
     const [registerUser,
-        {   data: registerData,
+        { data: registerData,
             error: registerError,
             isLoading: registerIsLoading,
             isSuccess: registerIsSuccess }] = useRegisterUserMutation();     //These are now hooks look in the authApi.js file
     const [loginUser,
-        {   data: loginData,
+        { data: loginData,
             error: loginError,
             isLoading: loginIsLoading,
             isSuccess: loginIsSuccess }] = useLoginUserMutation();
@@ -54,7 +54,7 @@ const Login = () => {
 
     const handleRegistration = async (type) => {
         const inputData = type === "signup" ? signupInput : loginInput
-        const action = type === "signup"?registerUser:loginUser
+        const action = type === "signup" ? registerUser : loginUser
         // await action(inputData)
         try {
             const result = await action(inputData).unwrap();
@@ -65,26 +65,26 @@ const Login = () => {
     }
 
     useEffect(() => {
-      if(registerIsSuccess && registerData){
-        toast.success(registerData.message || "Signup successfull..")
-      }
-      if(registerError){
-        // toast.error(registerData.data.message || "Signup Failed..")
-        const errorMessage = registerError.data?.message || "Signup Failed..";
-        toast.error(errorMessage);
-      }
-      if(loginIsSuccess && loginData){
-        toast.success(loginData.message || "Login Successfull..")
-        navigate("/");
-        return;
-      }
-      if(loginError){
-        // toast.error(loginData.data.message || "Login Failed..")
-        const errorMessage = loginError.data?.message || "Login Failed..";
-        toast.error(errorMessage);
-      }
-    }, [loginIsLoading,registerIsLoading,loginData,registerData,loginError,registerError])
-    
+        if (registerIsSuccess && registerData) {
+            toast.success(registerData.message || "Signup successfull..")
+        }
+        if (registerError) {
+            // toast.error(registerData.data.message || "Signup Failed..")
+            const errorMessage = registerError.data?.message || "Signup Failed..";
+            toast.error(errorMessage);
+        }
+        if (loginIsSuccess && loginData) {
+            toast.success(loginData.message || "Login Successfull..")
+            navigate("/");
+            return;
+        }
+        if (loginError) {
+            // toast.error(loginData.data.message || "Login Failed..")
+            const errorMessage = loginError.data?.message || "Login Failed..";
+            toast.error(errorMessage);
+        }
+    }, [loginIsLoading, registerIsLoading, loginData, registerData, loginError, registerError])
+
     return (
         <div className="flex items-center justify-center w-full mt-20">
             <Tabs defaultValue="Signup" className="w-[400px]">
@@ -110,18 +110,31 @@ const Login = () => {
                                 <Input onChange={(e) => handlechange(e, "signup")} name="email" value={signupInput.email} type="email" placeholder="Enter your email" required={true} />
                             </div>
                             <div className="space-y-1">
+                                <Label htmlFor="role">Role</Label>
+                                <select
+                                    name="role"
+                                    value={signupInput.role || "student"}
+                                    onChange={(e) => handlechange(e, "signup")}
+                                    className="w-full p-2 border rounded"
+                                >
+                                    <option value="student">Student</option>
+                                    <option value="instructor">Instructor</option>
+                                </select>
+                            </div>
+
+                            <div className="space-y-1">
                                 <Label htmlFor="password">Password</Label>
                                 <Input onChange={(e) => handlechange(e, "signup")} name="password" value={signupInput.password} type="password" placeholder="Enter your password" required={true} />
                             </div>
                         </CardContent>
                         <CardFooter>
-                            <Button disabled = {registerIsLoading} onClick={() => handleRegistration("signup")}>
+                            <Button disabled={registerIsLoading} onClick={() => handleRegistration("signup")}>
                                 {
-                                    registerIsLoading?(
+                                    registerIsLoading ? (
                                         <>
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin"/>Please Wait
+                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />Please Wait
                                         </>
-                                    ):"Signup"
+                                    ) : "Signup"
                                 }
                             </Button>
                         </CardFooter>
@@ -146,11 +159,11 @@ const Login = () => {
                             </div>
                         </CardContent>
                         <CardFooter>
-                            <Button disabled = {loginIsLoading} onClick={() => handleRegistration("login")}>
+                            <Button disabled={loginIsLoading} onClick={() => handleRegistration("login")}>
                                 {
                                     loginIsLoading ? (
                                         <>
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin"/>Please Wait 
+                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />Please Wait
                                         </>
                                     ) : "Login"
                                 }

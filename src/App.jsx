@@ -23,6 +23,9 @@ import SearchPage from './pages/student/SearchPage'
 import { AdminRoute, AuthenticatedUser, ProtectedRoute } from './components/ProtectedRoutes'
 import PurchaseCourseProtectedRoute from './components/PurchaseCourseProtectedRoute'
 import { ThemeProvider } from './components/ThemeProvider'
+import DoubtSolver from './components/DoubtSolver'
+import AboutUs from './pages/AboutUs'
+import ContactUs from './pages/ContactUs'
 
 
 const appRouter = createBrowserRouter([
@@ -35,6 +38,7 @@ const appRouter = createBrowserRouter([
         element: <>
           <HeroSection />
           <Courses />
+          <DoubtSolver/>
         </>
       },
       {
@@ -48,6 +52,14 @@ const appRouter = createBrowserRouter([
       {
         path: "profile",
         element: <ProtectedRoute><Profile /></ProtectedRoute>
+      },
+      {
+        path: "aboutus",
+        element: <ProtectedRoute><AboutUs/></ProtectedRoute>
+      },
+      {
+        path: "contactus",
+        element: <ProtectedRoute><ContactUs/></ProtectedRoute>
       },
       {
         path: "course/search",

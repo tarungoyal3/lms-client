@@ -1,64 +1,3 @@
-// import React, { useRef } from "react";
-// import JoditEditor from "jodit-react";
-
-// const RichTextEditor = ({input,setInput}) => {
-//   const handleChange = (content)=>{
-//     setInput({...input,description:content})
-//   }
-//   const editor = useRef(null);
-
-//   const config = {
-//     buttons: ["bold", "italic", "underline", "|", "ul", "ol"], // Add more if needed
-//     toolbarAdaptive: false, // Prevents multi-line toolbar
-//     toolbarSticky: false, // Disables sticky behavior
-//     toolbarButtonSize: "small", // Makes buttons smaller to fit in one row
-//     showCharsCounter: false,
-//     showWordsCounter: false,
-//     showXPathInStatusbar: false, // Hide status bar
-//     showPlaceholder: false,
-//     readonly: false, // Keep it editable
-//     // height: "100px",   // Try changing this to a reasonable value
-//     minHeight: "50px",
-//     maxHeight: "120px",
-//   };
-
-//   return (
-//     <div className="min-h-[50px] max-h-[120px] overflow-y-auto border rounded-lg">
-//       <JoditEditor 
-//         value={input.description} 
-//         onChange={handleChange} 
-//         ref={editor} 
-//         config={config} 
-//       />
-//     </div>
-//   );
-  
-//   // return <JoditEditor value={input.description} onChange={handleChange} ref={editor} config={config} />;
-// };
-
-
-// export default RichTextEditor;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -104,9 +43,9 @@ const RichTextEditor = ({input,setInput}) => {
   if (!editor) return null;
 
   return (
-    <div >
+    <div>
       {/* Toolbar */}
-      <div className="flex flex-wrap gap-2 bg-gray-100 p-3 rounded-t-md border-b">
+      <div className="flex flex-wrap gap-2 bg-gray-100 p-3 rounded-t-md border-b dark:bg-gray-950">
         <ToolbarButton editor={editor} command="toggleBold" Icon={BoldIcon} />
         <ToolbarButton editor={editor} command="toggleItalic" Icon={ItalicIcon} />
         <ToolbarButton editor={editor} command="toggleUnderline" Icon={UnderlineIcon} />
@@ -120,7 +59,7 @@ const RichTextEditor = ({input,setInput}) => {
       </div>
 
       {/* Editor Content */}
-      <div className="p-4 border border-gray-300 rounded-b-md  bg-white">
+      <div className="p-4 border border-gray-300 rounded-b-md  bg-white text-black dark:text-white dark:bg-gray-950">
         <EditorContent editor={editor} className="prose " value={input.description} onChange={handleChange} />
       </div>
     </div>
