@@ -6,18 +6,6 @@ const Courses = () => {
   const {data,isLoading,isError} = useGetPublishedCourseQuery();
   if(isError) return <h1>Some error occurred.</h1>
 return (
-  // <div className='bg-gray-50 dark:bg-gray-900 py-16'>
-  //   <div className='max-w-7xl mx-auto px-6'>
-  //     <h2 className='text-center text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-12'>
-  //       Explore Our Top Courses
-  //     </h2>
-  //     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10'>
-  //       {isLoading
-  //         ? Array.from({ length: 6 }).map((_, index) => <CourseSkeleton key={index} />)
-  //         : data?.courses && data.courses.map((course, index) => <Course key={index} course = {course}/>)}
-  //     </div>
-  //   </div>
-  // </div>
   <div className="bg-gray-50 dark:bg-gray-900 py-20">
   <div className="max-w-7xl mx-auto px-4 sm:px-6">
     <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">

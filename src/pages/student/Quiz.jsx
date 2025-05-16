@@ -6,31 +6,7 @@ const Quiz = ({ courseId }) => {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
-
-  // useEffect(() => {
-  //   const fetchQuiz = async () => {
-  //     try {
-  //       const res = await axios.get(`http://localhost:8080/api/quiz/${courseId}`);
-  //       console.log("Quiz response:", res.data);
-        
-  //       // Ensure the quiz data is always an array
-  //       if (Array.isArray(res.data)) {
-  //         setQuizData(res.data);
-  //       } else if (res.data?.questions && Array.isArray(res.data.questions)) {
-  //         setQuizData(res.data.questions);
-  //       } else {
-  //         setQuizData([]);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching quiz:", error);
-  //       setQuizData([]);
-  //     }
-  //   };
-
-  //   fetchQuiz();
-  // }, [courseId]);
-
-
+  
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
