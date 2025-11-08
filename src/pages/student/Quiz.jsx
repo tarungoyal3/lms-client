@@ -10,7 +10,8 @@ const Quiz = ({ courseId }) => {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/api/quiz/${courseId}`);
+        // const res = await axios.get(`http://localhost:8080/api/quiz/${courseId}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/quiz/${courseId}`);
         console.log("Quiz response:", res.data);
   
         // Always set the quiz from the .questions array

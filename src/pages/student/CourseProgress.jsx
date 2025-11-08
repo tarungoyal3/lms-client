@@ -75,7 +75,8 @@ const CourseProgress = () => {
   const generateRecap = async () => {
     setLoadingRecap(true);
     try {
-      const res = await axios.post('http://localhost:8080/api/v1/revision/generate-summary', { lectures: [currentLecture] });
+      // const res = await axios.post('http://localhost:8080/api/v1/revision/generate-summary', { lectures: [currentLecture] });
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/revision/generate-summary`, { lectures: [currentLecture] });
 
       setRecap(res.data.summary);
     } catch (err) {
@@ -90,7 +91,10 @@ const CourseProgress = () => {
   const generateQuiz = async () => {
     setLoadingQuiz(true);
     try {
-      const res = await axios.post('http://localhost:8080/api/v1/quiz/generate-quiz', {
+      // const res = await axios.post('http://localhost:8080/api/v1/quiz/generate-quiz', {
+      //   lectures: [currentLecture]  // or all lectures for full course
+      // });
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/quiz/generate-quiz`, {
         lectures: [currentLecture]  // or all lectures for full course
       });
 

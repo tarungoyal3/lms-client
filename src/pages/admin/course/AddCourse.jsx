@@ -13,12 +13,6 @@ const AddCourse = () => {
     const [category, setCategory] = useState("");
     const [createCourse,{data,error,isLoading,isSuccess}] = useCreateCourseMutation();
     const navigate = useNavigate();
-    //for displaying toast
-    // useEffect(() => {
-    //     if(isSuccess){
-    //         toast.success(data?.message || "Course created.")
-    //     }
-    // }, [isSuccess,error])
     useEffect(() => {
         console.log("isSuccess:", isSuccess, "data:", data, "error:", error);
         

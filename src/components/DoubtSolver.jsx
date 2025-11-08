@@ -11,6 +11,8 @@ const DoubtSolver = () => {
   const [loading, setLoading] = useState(false);
   const answerRef = useRef(null);
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
   const dragControls = useDragControls();
   const y = useMotionValue(0);
 
@@ -21,7 +23,8 @@ const DoubtSolver = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/v1/ai/ask",
+        //"http://localhost:8080/api/v1/ai/ask",
+        `${API_BASE}/ai/ask`,
         { question },
         { withCredentials: true }
       );

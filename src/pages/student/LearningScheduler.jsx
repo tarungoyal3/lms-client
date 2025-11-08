@@ -21,7 +21,12 @@ const LearningScheduler = ({ onScheduleGenerated }) => {
     setError('');
 
     try {
-      const res = await axios.post('http://localhost:8080/api/v1/scheduler/generate-schedule', {
+      // const res = await axios.post('http://localhost:8080/api/v1/scheduler/generate-schedule', {
+      //   availableHours,
+      //   deadline,
+      //   topics: topics.split(',').map(t => t.trim())
+      // });
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/scheduler/generate-schedule`, {
         availableHours,
         deadline,
         topics: topics.split(',').map(t => t.trim())

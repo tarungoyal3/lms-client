@@ -37,7 +37,8 @@ const LectureTab = () => {
     }, [lecture])
     
 
-    const MEDIA_API = "http://localhost:8080/api/v1/media"
+    // const MEDIA_API = "http://localhost:8080/api/v1/media"
+    const MEDIA_API = `${import.meta.env.VITE_API_BASE_URL}/media`
 
     const fileChangeHandler = async (e) => {
         const file = e.target.files[0];
